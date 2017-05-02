@@ -1,0 +1,1 @@
+document.writeln('<div class="footer"><p class="footer-c"><span>网站编辑部邮箱hykj_global@163.com</span><span>地址：北京市朝阳区建国门外大街3号京伦饭店8层</span></p></div>');

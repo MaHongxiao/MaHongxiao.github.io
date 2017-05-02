@@ -1,0 +1,10 @@
+document.writeln('<div class="logo-con"><img src="images/hy/hy-logo.png"></div>');
+document.writeln('<div class="header">');
+document.writeln('<div class="header-c">');
+document.writeln('<span class="lock"><img class="lock-img" src="images/hy/header-bg.png"><a >首页</a><img src="images/hy/topheader-bg.png"></span>');
+document.writeln('<span><a target="_parent" href="news.html">公司新闻</a><img src="images/hy/topheader-bg.png"></span>');
+document.writeln('<span><a>技术介绍</a><img src="images/hy/topheader-bg.png"></span>');
+document.writeln('<span><a>相关视频</a><img src="images/hy/topheader-bg.png"></span>');
+document.writeln('<span><a href="二级页面页头DEMO.html">联系我们</a></span>');
+document.writeln('</div>');
+document.writeln('</div>');

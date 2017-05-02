@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>浩雨科技 - 相关视频</title>
+	<link rel="stylesheet" type="text/css" href="css/hy-csh.css">
+	<script type="text/javascript" src="js/jquery.js"></script>
+    <link rel="shortcut icon" href="images/favicon.ico" >    
+    <script type="text/javascript" src="js/swfobject.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    var isOpen = 0;
+    //全局变量，判断是否已经打开弹出框
+    $(".btnDel").click(function() {
+        //$(".box-mask").css({"display":"block"});
+        $(".box-mask").fadeIn(500);
+        center($(this).siblings('.box'));
+        //载入弹出窗口上的按钮事件
+        checkEvent($(this).parent(), $(".btnSure"), $(".btnCancel"));
+    });
+    function center(obj) {
+        //obj这个参数是弹出框的整个对象
+        var screenWidth = $(window).width(), screenHeigth = $(window).height();
+        //获取屏幕宽高
+        var scollTop = $(document).scrollTop();
+        //当前窗口距离页面顶部的距离
+        var objLeft = (screenWidth - obj.width()) / 2;
+        ///弹出框距离左侧距离
+        var objTop = (screenHeigth - obj.height()) / 2 + scollTop;
+        ///弹出框距离顶部的距离
+        obj.css({
+            left:objLeft + "px",
+            top:objTop + "px"
+        });
+        obj.fadeIn(500);
+        obj.css("z-index","120");
+        //弹出框淡入
+        isOpen = 1;
+        //弹出框打开后这个变量置1 说明弹出框是打开装填
+        //当窗口大小发生改变时
+        $(window).resize(function() {
+            //只有isOpen状态下才执行
+            if (isOpen == 1) {
+                //重新获取数据
+                screenWidth = $(window).width();
+                screenHeigth = $(window).height();
+                var scollTop = $(document).scrollTop();
+                objLeft = (screenWidth - obj.width()) / 2;
+                var objTop = (screenHeigth - obj.height()) / 2 + scollTop;
+                obj.css({
+                    left:objLeft + "px",
+                    top:objTop + "px"
+                });
+                obj.fadeIn(500);
+            }
+        });
+        //当滚动条发生改变的时候
+        $(window).scroll(function() {
+            if (isOpen == 1) {
+                //重新获取数据
+                screenWidth = $(window).width();
+                screenHeigth = $(window).height();
+                var scollTop = $(document).scrollTop();
+                objLeft = (screenWidth - obj.width()) / 2;
+                var objTop = (screenHeigth - obj.height()) / 2 + scollTop;
+                obj.css({
+                    left:objLeft + "px",
+                    top:objTop + "px"
+                });
+                obj.fadeIn(500);
+            }
+        });
+    }
+    //导入两个按钮事件 obj整个页面的内容对象，obj1为确认按钮，obj2为取消按钮
+    function checkEvent(obj, obj1, obj2) {
+        //确认后删除页面所有东西
+        obj1.click(function() {
+            //移除所有父标签内容
+            obj.remove();
+            //调用closed关闭弹出框
+            closed($(".box-mask"), $(".box"));
+        });
+        //取消按钮事件
+        obj2.click(function() {
+            //调用closed关闭弹出框
+            closed($(".box-mask"), $(".box"));
+        });
+    }
+    //关闭弹出窗口事件
+    function closed(obj1, obj2) {
+        obj1.fadeOut(500);
+        obj2.fadeOut(500);
+        obj2.css("z-index","101");
+        isOpen = 0;
+    }
+    function setFile(dom){
+    	var s1 = new SWFObject("video/flvplayer.swf","single","1000","600","10");
+    	dom.each(function(index, el) {
+    		var id = $(this).attr("id");
+    		var index = index+1;
+    		s1.addParam("allowfullscreen","true");
+	s1.addVariable("file",index+".flv");
+	s1.addVariable("image","");
+	s1.addVariable("width","1000");
+	s1.addVariable("height","600");
+	s1.write(id);
+    	});
+    	
+	
+    }
+    setFile($(".flv"));	
+});
+</script>
+
+</head>
+<body>
+	<div class="m" style="margin-bottom: 80px;">
+			<div class="logo-con"><img src="images/hy/hy-logo.png"></div>
+		<div class="header">
+			<div class="header-c">
+				<span><a  href="index.html">首页</a><img src="images/hy/topheader-bg.png"></span>
+				<span><a href="news.html">公司新闻</a><img src="images/hy/topheader-bg.png"></span>
+				<span><a href="tech.html">技术介绍</a><img src="images/hy/topheader-bg.png"></span>
+				<span class="lock"><img class="lock-img" src="images/hy/header-bg.png"><a href="video.html">相关视频</a><img src="images/hy/topheader-bg.png"></span>
+				<span><a  href="about-us.html">联系我们</a></span>
+			</div>
+		</div>				
+		<div class="chd-banner"><img class="l" src="images/hy/font-bg.png" style="padding-left: 120px;"><img class="r" src="images/hy/air-bg.png"></div>
+		
+		<div class="news-con w">
+
+			<div class="c-header"><img src="images/hy/news-icon.png"><span class="l">相关视频</span></div>
+<!-- 视频1 -->
+<div class="con-video">
+		<a class="btnDel" href="#">
+		<img src="images/video/video1.jpg">
+		<p>固定式托枕最新演示</p>
+		</a>
+<div class="box-mask"></div>
+<div class="box">
+ <input  class="btnCancel" style="float:right;" type="button"  value="关闭">
+ 
+    <div class="demo">
+	<p id="player1" class="flv">
+
+
+
+
+    </p>
+</div>
+</div>
+	</div>
+	<!-- 视频2-->
+<div  class="con-video">
+		<a class="btnDel" href="#"><img src="images/video/video2.jpg">
+		<p>托枕演示视频</p></a>
+<div class="box-mask"></div>
+<div class="box">
+ <input  class="btnCancel" style="float:right;" type="button"  value="关闭">
+  
+    <div class="demo">
+	<p id="player2" class="flv">
+
+
+
+
+    </p>
+</div>
+	</div>
+  
+	
+	</div>
+<!-- 视频3 -->
+<div class="con-video">
+		<a class="btnDel" href="#"><img src="images/video/video3.jpg"><p>固定式托枕套安装</p></a>
+<div class="box-mask"></div>
+<div class="box">
+ <input  class="btnCancel" style="float:right;" type="button"  value="关闭">
+  
+    <div class="demo">
+	<p id="player3" class="flv">
+
+
+
+
+    </p>
+</div>
+</div>
+	</div>
+	<!-- 视频4 -->
+	<div class="con-video">
+		<a class="btnDel" href="#"><img src="images/video/video4.jpg"><p>固定托枕套安装</p></a>
+<div class="box-mask"></div>
+<div class="box">
+ <input  class="btnCancel" style="float:right;" type="button"  value="关闭">
+  
+    <div class="demo">
+	<p id="player4" class="flv">
+
+
+
+
+    </p>
+</div>
+</div>
+
+
+	</div>
+	<!-- 视频5 -->
+		<div class="con-video">
+		<a class="btnDel" href="#"><img src="images/video/video5.jpg"><p>托枕位置调节</p></a>
+<div class="box-mask"></div>
+<div class="box">
+ <input  class="btnCancel" style="float:right;" type="button"  value="关闭">
+  
+    <div class="demo">
+	<p id="player5" class="flv">
+
+
+
+
+    </p>
+</div>
+</div>
+</div>
+<!-- 视频6 -->
+		<div class="con-video">
+		<a class="btnDel" href="#"><img src="images/video/video6.jpg"><p>托枕脱下</p></a>
+<div class="box-mask"></div>
+<div class="box">
+ <input  class="btnCancel" style="float:right;" type="button"  value="关闭">
+  
+    <div class="demo">
+	<p id="player6" class="flv">
+
+
+
+
+    </p>
+</div>
+</div>
+</div>
+    <!-- 视频7 -->
+        <div class="con-video">
+        <a class="btnDel" href="#"><img src="images/video/video7.jpg"><p>托枕分离说明</p></a>
+<div class="box-mask"></div>
+<div class="box">
+ <input  class="btnCancel" style="float:right;" type="button"  value="关闭">
+  
+    <div class="demo">
+    <p id="player7" class="flv">
+
+
+
+
+    </p>
+</div>
+</div>
+</div>
+<!-- 视频8 -->
+<div class="con-video">
+        <a class="btnDel" href="#">
+        <img src="images/video/video8.jpg">
+        <p>固定式托枕演示</p>
+        </a>
+<div class="box-mask"></div>
+<div class="box">
+ <input  class="btnCancel" style="float:right;" type="button"  value="关闭">
+ 
+    <div class="demo">
+    <p id="player8" class="flv">
+
+
+
+
+    </p>
+</div>
+</div>
+    </div>	
+    </div>		
+    </div>  
+<script type="text/javascript" src="js/footer.js"></script>
+
+
+</body>
+</html>
